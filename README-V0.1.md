@@ -2,7 +2,7 @@
 
 # DocAI   versão 0.1
 
-### Sistema de Consulta Inteligente de Biblioteca Técnica
+## Sistema de Consulta Inteligente de Biblioteca Técnica
 
 Sistema de **indexação e consulta semântica de documentos técnicos** baseado em **RAG (Retrieval Augmented Generation)** operando **100% local**, sem dependência de serviços externos.
 
@@ -10,7 +10,7 @@ O sistema transforma uma biblioteca de documentos em um **assistente técnico ca
 
 ---
 
-# Visão Geral
+## Visão Geral
 
 DocAI permite:
 
@@ -25,7 +25,7 @@ A arquitetura foi projetada para **CPU only**, permitindo execução em hardware
 
 ---
 
-# Arquitetura Geral
+## Arquitetura Geral
 
 ```
 Biblioteca de PDFs
@@ -47,7 +47,7 @@ Ollama CLI   OpenWebUI
 
 ---
 
-# Infraestrutura
+## Infraestrutura
 
 Servidor principal
 
@@ -88,7 +88,7 @@ Destino
 
 ---
 
-# Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 /opt/doc-ai
@@ -110,7 +110,7 @@ Destino
 
 ---
 
-# Arquitetura de IA
+## Arquitetura de IA
 
 DocAI utiliza **RAG (Retrieval Augmented Generation)**.
 
@@ -137,7 +137,7 @@ Resposta com fonte
 
 ---
 
-# Pipeline de Indexação
+## Pipeline de Indexação
 
 ```
 PDF
@@ -164,7 +164,7 @@ Armazenamento
 
 ---
 
-# Pipeline OCR
+## Pipeline OCR
 
 Alguns PDFs são escaneados.
 
@@ -191,7 +191,7 @@ Isso permite indexar:
 
 ---
 
-# Banco Vetorial
+## Banco Vetorial
 
 Local:
 
@@ -227,7 +227,7 @@ Exemplo de metadado
 
 ---
 
-# Modelo de Embeddings
+## Modelo de Embeddings
 
 Modelo utilizado
 
@@ -272,7 +272,7 @@ qwen2.5
 
 ---
 
-# Preparação do Ambiente
+## Preparação do Ambiente
 
 Criar diretório
 
@@ -283,7 +283,7 @@ cd /opt/doc-ai
 
 ---
 
-# Criar ambiente virtual
+## Criar ambiente virtual
 
 ```
 python3 -m venv venv
@@ -326,7 +326,7 @@ sudo apt install poppler-utils
 
 ---
 
-# Transferência da Biblioteca
+## Transferência da Biblioteca
 
 Transferência via rsync
 
@@ -348,7 +348,7 @@ Resultado
 
 ---
 
-# Execução da Indexação
+## Execução da Indexação
 
 Ativar ambiente
 
@@ -364,7 +364,7 @@ python /opt/doc-ai/scripts/index_pdfs.py
 
 ---
 
-# Monitoramento
+## Monitoramento
 
 Ver crescimento do banco vetorial
 
@@ -387,7 +387,7 @@ htop
 
 ---
 
-# Exemplos de Perguntas
+## Exemplos de Perguntas
 
 ```
 o que diz a NBR5410 sobre aterramento
@@ -403,7 +403,7 @@ quais documentos falam sobre redes de computadores
 
 ---
 
-# Resultado Final
+## Resultado Final
 
 O sistema transforma a biblioteca em um:
 
