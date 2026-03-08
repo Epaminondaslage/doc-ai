@@ -1,4 +1,4 @@
-# Doc-AI PDF Indexer
+# Doc-AI PDF Indexer   index_pdfs_v2.py   versão melhorada
 
 ## Descrição
 
@@ -258,8 +258,7 @@ EOF marker not found
 ```
 ---
 
-#
-Servidor de instalação:
+## Servidor de instalação:
 
 ```
 10.0.0.37
