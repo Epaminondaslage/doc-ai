@@ -532,7 +532,3 @@ Melhorias futuras:
 ---
 
 ```
-
----
-
-Se quiser, posso também te gerar **uma versão ainda mais profissional desse README com diagramas de arquitetura reais (estilo arquitetura de IA / RAG / MLOps)** que deixa o projeto **nível GitHub profissional mesmo**.
