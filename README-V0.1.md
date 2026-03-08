@@ -384,25 +384,6 @@ ou
 htop
 ```
 
----
-
-# Tempo de Indexação
-
-Para biblioteca atual
-
-```
-1063 PDFs
-≈22GB
-CPU only
-```
-
-Tempo estimado
-
-```
-2 a 6 horas
-```
-
-Dependendo do uso de OCR.
 
 ---
 
@@ -437,20 +418,6 @@ Capaz de consultar conhecimento sobre
 * normas técnicas
 * redes de computadores
 
----
-
-# Evoluções Futuras
-
-Possíveis melhorias
-
-* indexação incremental
-* API de consulta
-* interface web dedicada
-* ranking de relevância
-* múltiplos modelos de embeddings
-* cache de respostas
-* clusterização de documentos
-* classificação automática de temas
 
 ---
 
