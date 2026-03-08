@@ -1,6 +1,6 @@
 
 
-# DocAI
+# DocAI   versão 0.1
 
 ### Sistema de Consulta Inteligente de Biblioteca Técnica
 
