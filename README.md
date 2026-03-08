@@ -1,9 +1,9 @@
 
-# 📚 DocAI — Sistema de Consulta Inteligente de Biblioteca Técnica
+# DocAI — Sistema de Consulta Inteligente de Biblioteca Técnica
 
-Sistema de **indexação e consulta semântica de documentos técnicos** utilizando **RAG (Retrieval Augmented Generation)** rodando **100% local**.
+Sistema de **indexação e consulta semântica de documentos técnicos utilizando RAG (Retrieval Augmented Generation)** rodando **100% local**.
 
-O sistema permite transformar uma coleção de documentos em um **assistente técnico pesquisável**.
+O sistema permite transformar uma coleção de documentos em um **assistente técnico pesquisável**, capaz de responder perguntas técnicas utilizando documentos da própria biblioteca.
 
 ---
 
@@ -15,7 +15,7 @@ Permitir:
 * criar embeddings semânticos
 * buscar conhecimento técnico
 * integrar com modelos locais (LLM)
-* operar **offline**
+* operar completamente **offline**
 
 ---
 
@@ -23,38 +23,38 @@ Permitir:
 
 Servidor principal:
 
-```text
+```
 10.0.0.37
 ```
 
 Sistema operacional:
 
-```text
+```
 Ubuntu Linux
 ```
 
 Hardware:
 
-```text
+```
 CPU only
 ```
 
 Biblioteca técnica:
 
-```text
+```
 1063 PDFs
 ≈22GB
 ```
 
-Origem:
+Origem da biblioteca:
 
-```text
+```
 10.0.0.5:/var/www/html/Biblioteca
 ```
 
 Destino:
 
-```text
+```
 /opt/doc-ai/pdfs
 ```
 
@@ -62,7 +62,7 @@ Destino:
 
 # 📁 Estrutura do Projeto
 
-```text
+```
 /opt/doc-ai
 │
 ├── pdfs
@@ -84,7 +84,7 @@ Destino:
 
 # 🧠 Arquitetura do Sistema
 
-```text
+```
 PDFs
  ↓
 extração de texto
@@ -106,7 +106,7 @@ resposta
 
 # 📊 Diagrama de Arquitetura
 
-```text
+```
              +------------------+
              |  Biblioteca PDF  |
              |  1063 arquivos   |
@@ -144,7 +144,9 @@ resposta
 
 # 🔎 Pipeline de Indexação
 
-```text
+Pipeline principal:
+
+```
 PDF
  ↓
 extração de texto (pypdf)
@@ -158,9 +160,43 @@ armazenamento no ChromaDB
 
 ---
 
+# 🔎 Pipeline de Indexação Atualizado (com OCR)
+
+Alguns documentos da biblioteca são **PDFs escaneados** (imagem).
+
+Nestes casos o sistema executa **OCR automático**.
+
+Pipeline atualizado:
+
+```
+PDF
+ ↓
+extração de texto (pypdf)
+ ↓
+se texto inexistente
+ ↓
+OCR (Tesseract)
+ ↓
+texto recuperado
+ ↓
+divisão em chunks
+ ↓
+geração de embeddings
+ ↓
+armazenamento vetorial
+```
+
+Isso permite indexar:
+
+* revistas escaneadas
+* apostilas digitalizadas
+* manuais antigos
+
+---
+
 # 🧩 Pipeline RAG
 
-```text
+```
 Pergunta do usuário
  ↓
 embedding da pergunta
@@ -180,7 +216,7 @@ geração da resposta
 
 Criar diretório do projeto:
 
-```bash
+```
 mkdir -p /opt/doc-ai
 cd /opt/doc-ai
 ```
@@ -189,13 +225,13 @@ cd /opt/doc-ai
 
 # 🐍 Criar ambiente virtual Python
 
-```bash
+```
 python3 -m venv venv
 ```
 
 Ativar:
 
-```bash
+```
 source venv/bin/activate
 ```
 
@@ -203,7 +239,7 @@ source venv/bin/activate
 
 # 📦 Instalar dependências
 
-```bash
+```
 pip install langchain
 pip install chromadb
 pip install pypdf
@@ -211,15 +247,28 @@ pip install sentence-transformers
 pip install langchain-text-splitters
 ```
 
-Dependências utilizadas:
+---
 
-| Biblioteca               | Função           |
-| ------------------------ | ---------------- |
-| langchain                | ferramentas RAG  |
-| chromadb                 | banco vetorial   |
-| pypdf                    | leitura de PDF   |
-| sentence-transformers    | embeddings       |
-| langchain-text-splitters | divisão de texto |
+# 📦 Dependências adicionais (OCR e criptografia)
+
+Alguns PDFs utilizam **criptografia AES** e outros exigem **OCR**.
+
+Dependências extras:
+
+```
+pip install cryptography
+pip install pytesseract
+pip install pdf2image
+pip install pillow
+```
+
+Dependências do sistema:
+
+```
+sudo apt install tesseract-ocr
+sudo apt install tesseract-ocr-por
+sudo apt install poppler-utils
+```
 
 ---
 
@@ -227,19 +276,19 @@ Dependências utilizadas:
 
 Transferência realizada com:
 
-```bash
+```
 rsync -avh --progress epaminondas@10.0.0.5:/var/www/html/Biblioteca/ /opt/doc-ai/pdfs/
 ```
 
 Verificação:
 
-```bash
+```
 find /opt/doc-ai/pdfs -type f -iname "*.pdf" | wc -l
 ```
 
 Resultado:
 
-```text
+```
 1063
 ```
 
@@ -249,7 +298,7 @@ Resultado:
 
 Modelo utilizado:
 
-```text
+```
 sentence-transformers/all-MiniLM-L6-v2
 ```
 
@@ -266,6 +315,7 @@ Motivo da escolha:
 
 * melhor desempenho em CPU
 * rápido para bibliotecas grandes
+* boa qualidade sem necessidade de GPU
 
 ---
 
@@ -273,7 +323,7 @@ Motivo da escolha:
 
 Localização:
 
-```text
+```
 /opt/doc-ai/scripts/index_pdfs.py
 ```
 
@@ -281,19 +331,21 @@ Responsabilidades:
 
 * percorrer biblioteca
 * extrair texto
+* aplicar OCR quando necessário
 * dividir conteúdo
 * gerar embeddings
 * armazenar metadados
+* tratar PDFs criptografados
 
 ---
 
 # 🧾 Metadados Indexados
 
-O sistema também indexa metadados para cada trecho.
+O sistema indexa metadados para cada trecho.
 
 Estrutura:
 
-```json
+```
 {
   "arquivo": "NBR5410.pdf",
   "pagina": 114,
@@ -309,7 +361,7 @@ Campos armazenados:
 | pagina  | página do documento  |
 | caminho | localização completa |
 
-Esses dados permitem gerar respostas com **fonte e referência**.
+Esses dados permitem gerar respostas com **fonte e referência precisa**.
 
 ---
 
@@ -317,13 +369,13 @@ Esses dados permitem gerar respostas com **fonte e referência**.
 
 Ativar ambiente:
 
-```bash
+```
 source /opt/doc-ai/venv/bin/activate
 ```
 
 Executar:
 
-```bash
+```
 python /opt/doc-ai/scripts/index_pdfs.py
 ```
 
@@ -333,17 +385,19 @@ python /opt/doc-ai/scripts/index_pdfs.py
 
 Para biblioteca atual:
 
-```text
+```
 1063 PDFs
 ≈22GB
 CPU only
 ```
 
-Tempo esperado:
+Tempo típico:
 
-```text
-40 minutos a 2 horas
 ```
+2 a 6 horas
+```
+
+(depende da quantidade de páginas que exigem OCR)
 
 ---
 
@@ -351,7 +405,7 @@ Tempo esperado:
 
 Local:
 
-```text
+```
 /opt/doc-ai/vector_db
 ```
 
@@ -367,15 +421,15 @@ Contém:
 
 Exemplos de perguntas possíveis:
 
-```text
+```
 o que diz a NBR5410 sobre aterramento
 ```
 
-```text
+```
 explique funcionamento de inversor de frequência
 ```
 
-```text
+```
 quais documentos falam sobre redes de computadores
 ```
 
@@ -383,11 +437,11 @@ quais documentos falam sobre redes de computadores
 
 # 🤖 Modelos LLM
 
-Servidor Ollama:
+Servidor Ollama.
 
 Modelos instalados:
 
-```text
+```
 tinyllama
 tinyllama-fast
 qwen2.5:0.5b
@@ -395,9 +449,11 @@ qwen2.5:0.5b
 
 Recomendado:
 
-```text
+```
 qwen2.5
 ```
+
+Melhor qualidade para respostas técnicas.
 
 ---
 
@@ -408,6 +464,7 @@ OpenWebUI pode utilizar o banco vetorial para:
 * chat com documentos
 * busca técnica
 * consulta semântica
+* respostas com referência de fonte
 
 ---
 
@@ -415,19 +472,19 @@ OpenWebUI pode utilizar o banco vetorial para:
 
 Ver crescimento do banco vetorial:
 
-```bash
+```
 watch -n 10 du -sh /opt/doc-ai/vector_db
 ```
 
 Ver uso de CPU:
 
-```bash
+```
 top
 ```
 
 ou
 
-```bash
+```
 htop
 ```
 
@@ -435,13 +492,13 @@ htop
 
 # ⚠️ Limitações
 
-PDFs escaneados podem não conter texto.
+Alguns PDFs podem estar:
 
-Nestes casos seria necessário:
+* protegidos
+* criptografados
+* corrompidos
 
-```text
-OCR (Tesseract)
-```
+Nestes casos o indexador ignora o documento.
 
 ---
 
@@ -449,9 +506,7 @@ OCR (Tesseract)
 
 O sistema transforma a biblioteca em um:
 
-```text
-Assistente técnico inteligente
-```
+**Assistente técnico inteligente local**
 
 Capaz de consultar conhecimento sobre:
 
@@ -467,16 +522,17 @@ Capaz de consultar conhecimento sobre:
 
 Melhorias futuras:
 
-* OCR automático
-* indexação incremental
-* API de consulta
+* indexação incremental automática
+* API de consulta REST
 * interface web dedicada
 * ranking de relevância
-* integração com múltiplos LLMs
+* múltiplos modelos de embeddings
+* cache de respostas
 
 ---
 
-# 🧑‍💻 Autor
+```
 
-Projeto construído para ambiente de laboratório técnico e automação de conhecimento local.
+---
 
+Se quiser, posso também te gerar **uma versão ainda mais profissional desse README com diagramas de arquitetura reais (estilo arquitetura de IA / RAG / MLOps)** que deixa o projeto **nível GitHub profissional mesmo**.
