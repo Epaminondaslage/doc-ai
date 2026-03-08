@@ -517,18 +517,3 @@ Capaz de consultar conhecimento sobre:
 * normas técnicas
 
 ---
-
-# 📈 Possíveis Evoluções
-
-Melhorias futuras:
-
-* indexação incremental automática
-* API de consulta REST
-* interface web dedicada
-* ranking de relevância
-* múltiplos modelos de embeddings
-* cache de respostas
-
----
-
-```
