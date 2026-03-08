@@ -1,4 +1,7 @@
-# Doc-AI PDF Indexer   index_pdfs_v2.py   versão melhorada
+# Doc-AI PDF Indexer   
+## Index_pdfs_v2.py   versão melhorada
+
+---
 
 ## Descrição
 
@@ -22,7 +25,7 @@ O script também possui:
 
 ---
 
-# Estrutura do Projeto
+## Estrutura do Projeto
 
 Exemplo de estrutura recomendada:
 
@@ -43,7 +46,7 @@ Exemplo de estrutura recomendada:
 
 ---
 
-# Requisitos
+## Requisitos
 
 Sistema operacional:
 
@@ -67,7 +70,7 @@ torch
 
 ---
 
-# Instalação
+## Instalação
 
 Criar diretório do projeto:
 
@@ -102,7 +105,7 @@ sudo apt install poppler-utils
 
 ---
 
-# Configuração
+## Configuração
 
 No script `index_pdfs.py`, verifique os caminhos principais:
 
@@ -122,7 +125,7 @@ Onde:
 
 ---
 
-# Execução
+## Execução
 
 Entrar no ambiente virtual:
 
@@ -138,7 +141,7 @@ python /opt/doc-ai/scripts/index_pdfs.py
 
 ---
 
-# Funcionamento do Processo
+## Funcionamento do Processo
 
 Para cada PDF o sistema executa:
 
@@ -153,7 +156,7 @@ Cada trecho é identificado por um **hash único**, evitando duplicações.
 
 ---
 
-# Retomada Automática
+## Retomada Automática
 
 O arquivo:
 
@@ -175,7 +178,7 @@ Indexando: /opt/doc-ai/pdfs/livro3.pdf
 
 ---
 
-# Parada Segura
+## Parada Segura
 
 Durante a execução é possível interromper o processo com:
 
@@ -191,7 +194,7 @@ O sistema irá:
 
 ---
 
-# Saída do Programa
+## Saída do Programa
 
 Ao final da execução são exibidas estatísticas:
 
@@ -209,7 +212,7 @@ Total de PDFs registrados: 145
 
 ---
 
-# Banco Vetorial
+## Banco Vetorial
 
 O banco é armazenado em:
 
@@ -231,7 +234,7 @@ Cada registro contém:
 
 ---
 
-# Performance
+## Performance
 
 Tempo médio de indexação:
 
@@ -245,7 +248,7 @@ A indexação inicial pode levar **várias horas** dependendo da quantidade de d
 
 ---
 
-# Avisos Importantes
+## Avisos Importantes
 
 OCR é automaticamente ativado quando o PDF não possui texto selecionável.
 
