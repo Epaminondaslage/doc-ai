@@ -297,6 +297,3 @@ Após a ativação do serviço:
 
 ---
 
----
-
-Se quiser, também posso gerar um **README geral do DocAI completo (arquitetura + indexação + API + frontend)** que fica excelente como **documentação oficial do projeto**.
