@@ -67,7 +67,7 @@ O banco vetorial:
 
 Criar o arquivo:
 
-```
+```Bash
 /etc/systemd/system/docai.service
 ```
 

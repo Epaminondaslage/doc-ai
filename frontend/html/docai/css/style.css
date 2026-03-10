@@ -1,10 +1,8 @@
-/*     # ##################################################################
-       # Este codigo deve ser instalado no serv 10.0.0.37
-       #   /var/www/html/docai/app.js
-       # Desenvolvido em 09-03-2026
-       # DocAI - Interface de Busca
-       # CSS atualizado estilo Google
-       # ################################################################## */
+/* ##################################################################
+   DocAI - Interface de Busca
+   Layout refinado estilo Google
+################################################################## */
+
 
 /* ===== RESET ===== */
 
@@ -13,54 +11,68 @@ font-family:Arial, Helvetica, sans-serif;
 background:#ffffff;
 margin:0;
 padding:0;
+color:#202124;
 }
 
 
 /* ===== CONTAINER ===== */
 
 .container{
-width:900px;
+max-width:700px;
 margin:auto;
 margin-top:80px;
 text-align:center;
+padding:0 15px;
 }
 
 
 /* ===== LOGO ===== */
 
 .logo{
-margin-bottom:30px;
+margin-bottom:35px;
 }
 
 .logo img{
-width:220px;
+width:100%;
+max-width:520px;
+height:auto;
 }
 
 
 /* ===== TÍTULO ===== */
 
 h1{
-font-size:42px;
-color:#202124;
-margin-bottom:40px;
+font-size:40px;
+margin-bottom:35px;
 }
 
 
 /* ===== BUSCA ===== */
+/* ===== BUSCA ===== */
 
 .search-box{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:10px;
+max-width:650px;
+margin:auto;
+width:100%;
 }
 
 
-/* campo de busca */
+/* ===== CAMPO DE BUSCA ===== */
 
-input{
-width:600px;
-padding:14px;
+.search-input{
+position:relative;
+width:100%;
+}
+
+
+/* input */
+
+.search-input input{
+
+width:100%;
+
+padding:14px 110px 14px 45px;
+
 font-size:18px;
 
 border-radius:30px;
@@ -69,14 +81,97 @@ border:1px solid #dfe1e5;
 outline:none;
 
 transition:all 0.2s;
+
+box-sizing:border-box;
+
 }
 
 
-/* efeito focus estilo Google */
+/* hover estilo Google */
 
-input:focus{
+.search-input:hover input{
 box-shadow:0 1px 6px rgba(32,33,36,0.28);
-border-color:rgba(223,225,229,0);
+}
+
+
+/* focus */
+
+.search-input input:focus{
+border-color:transparent;
+box-shadow:0 1px 6px rgba(32,33,36,0.28);
+}
+
+
+/* ===== ÍCONE LUPA ===== */
+
+.search-icon{
+
+position:absolute;
+
+left:15px;
+top:50%;
+
+transform:translateY(-50%);
+
+color:#9aa0a6;
+
+}
+
+
+/* ===== BOTÃO DENTRO DO CAMPO ===== */
+
+.search-input button{
+
+position:absolute;
+
+right:6px;
+top:50%;
+
+transform:translateY(-50%);
+
+padding:9px 18px;
+
+font-size:15px;
+
+border:1px solid #dadce0;
+border-radius:20px;
+
+background:#f8f9fa;
+color:#3c4043;
+
+cursor:pointer;
+
+transition:all 0.2s;
+
+}
+
+.search-input button:hover{
+box-shadow:0 1px 3px rgba(0,0,0,0.2);
+background:#f1f3f4;
+}
+
+/* efeito focus */
+
+.search-input input:focus{
+border-color:transparent;
+box-shadow:0 1px 6px rgba(32,33,36,0.28);
+}
+
+
+/* ===== ÍCONE LUPA ===== */
+
+.search-icon{
+
+position:absolute;
+
+left:15px;
+top:50%;
+
+transform:translateY(-50%);
+
+font-size:18px;
+color:#9aa0a6;
+
 }
 
 
@@ -84,7 +179,7 @@ border-color:rgba(223,225,229,0);
 
 button{
 
-padding:12px 20px;
+padding:12px 22px;
 
 font-size:16px;
 
@@ -97,6 +192,8 @@ color:#3c4043;
 cursor:pointer;
 
 transition:all 0.2s;
+
+white-space:nowrap;
 
 }
 
@@ -117,35 +214,61 @@ margin-top:20px;
 
 border-radius:10px;
 
-box-shadow:0 1px 3px rgba(0,0,0,0.1);
+box-shadow:0 1px 3px rgba(0,0,0,0.08);
+
 text-align:left;
 
 }
 
 
-/* trecho encontrado */
+/* ===== TÍTULO DO RESULTADO ===== */
 
-.trecho{
-
-margin-top:10px;
-color:#3c4043;
-line-height:1.5;
-
+.result-title{
+font-size:18px;
+margin-bottom:6px;
 }
 
 
-/* fonte */
+/* ===== LINK DOCUMENTO ===== */
+
+.doc-link{
+color:#188038;
+text-decoration:none;
+}
+
+.doc-link:hover{
+text-decoration:underline;
+}
+
+
+/* ===== FONTE ===== */
 
 .fonte{
-
 font-size:14px;
 color:#188038;
 margin-bottom:6px;
-
 }
 
 
-/* ===== RESPOSTA DA IA ===== */
+/* ===== TRECHO ===== */
+
+.trecho{
+margin-top:10px;
+color:#3c4043;
+line-height:1.6;
+}
+
+
+/* ===== PÁGINA ===== */
+
+.page{
+color:#5f6368;
+font-size:14px;
+margin-left:6px;
+}
+
+
+/* ===== RESPOSTA IA ===== */
 
 .answer{
 
@@ -156,7 +279,7 @@ margin-top:30px;
 
 border-radius:12px;
 
-box-shadow:0 2px 6px rgba(0,0,0,0.1);
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
 
 border-left:5px solid #4285f4;
 
@@ -166,7 +289,7 @@ text-align:left;
 }
 
 
-/* ===== LINK PDF ===== */
+/* ===== LINKS ===== */
 
 a{
 color:#1a73e8;
@@ -182,7 +305,7 @@ text-decoration:underline;
 
 #autocomplete{
 
-width:600px;
+max-width:600px;
 margin:auto;
 
 background:white;
@@ -192,7 +315,6 @@ border-radius:8px;
 margin-top:5px;
 
 overflow:hidden;
-
 text-align:left;
 
 }
@@ -206,9 +328,7 @@ border-bottom:1px solid #eee;
 }
 
 .auto-item:hover{
-
 background:#f1f3f4;
-
 }
 
 
@@ -249,30 +369,7 @@ animation:spin 1s linear infinite;
 }
 
 
-/* ===== RESPONSIVO ===== */
-
-@media (max-width:900px){
-
-.container{
-width:95%;
-}
-
-input{
-width:100%;
-}
-
-#autocomplete{
-width:100%;
-}
-
-.search-box{
-flex-direction:column;
-}
-
-}
-
 /* ===== FOOTER ===== */
-
 
 .footer{
 
@@ -281,89 +378,41 @@ padding:20px;
 
 text-align:center;
 
-background:#ffffff;
-
-border-top:1px solid #ddd;
+border-top:1px solid #e0e0e0;
 
 font-size:14px;
-
 color:#5f6368;
 
 }
 
-/* ===== RESULTADO ESTILO GOOGLE ===== */
 
-.result-title{
+/* ===== RESPONSIVO ===== */
 
-font-size:18px;
-margin-bottom:6px;
+@media (max-width:768px){
 
+.container{
+margin-top:50px;
 }
 
-.doc-link{
-
-color:#1a0dab;
-text-decoration:none;
-
+.search-box{
+flex-direction:column;
+gap:12px;
 }
 
-.doc-link:hover{
-
-text-decoration:underline;
-
+.search-input{
+width:100%;
 }
 
-.pdf-icon{
-
-margin-right:6px;
-
+.search-input input{
+width:100%;
 }
 
-.page{
-
-color:#5f6368;
-font-size:14px;
-margin-left:6px;
-
+#autocomplete{
+max-width:100%;
 }
 
-/* título do resultado */
-
-.result-title{
-
-font-size:18px;
-margin-bottom:6px;
-
+.logo img{
+max-width:380px;
 }
-
-/* link do documento */
-
-.doc-link{
-
-color:#188038;
-text-decoration:none;
-
-}
-
-.doc-link:hover{
-
-text-decoration:underline;
-
-}
-
-/* ícone PDF */
-
-.pdf-icon{
-
-margin-right:6px;
-
-}
-
-/* página */
-
-.page{
-
-color:#5f6368;
-font-size:14px;
 
 }

@@ -1,9 +1,8 @@
-
 <!-- ##########################################################
      DocAI - Interface Web de Busca
      Servidor: 10.0.0.37
      Local: /var/www/html/docai/index.html
-     ########################################################## -->
+########################################################## -->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -11,7 +10,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>DocAI - Biblioteca Técnica</title>
@@ -25,45 +23,74 @@
 
 <!-- ===== CONTAINER PRINCIPAL ===== -->
 
-<div class="container">
+<main class="container">
 
 
-    <!-- ===== LOGO ===== -->
+<!-- ===== LOGO ===== -->
 
-    <div class="logo">
-        <img src="img/logo.jpg" alt="DocAI">
-    </div>
-
-
-    <!-- ===== CAMPO DE BUSCA ===== -->
-
-    <div class="search-box">
-
-        <input 
-            id="query"
-            type="text"
-            placeholder="Pesquisar na biblioteca técnica..."
-            autocomplete="off"
-        >
-
-        <button onclick="search()">
-            Pesquisar
-        </button>
-
-    </div>
+<div class="logo">
+<img src="img/logo_top.jpg" alt="DocAI - Biblioteca Técnica">
+</div>
 
 
-    <!-- ===== AUTOCOMPLETE ===== -->
 
-    <div id="autocomplete"></div>
+<!-- ===== BUSCA ===== -->
+
+<div class="search-box">
+
+<div class="search-input">
+
+<!-- ícone de busca -->
+
+<span class="search-icon">
+
+<svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa0a6">
+<path d="M21 20l-5.6-5.6a7 7 0 10-1.4 1.4L20 21l1-1zM10 16a6 6 0 110-12 6 6 0 010 12z"/>
+</svg>
+
+</span>
 
 
-    <!-- ===== RESULTADOS ===== -->
+<!-- campo de busca -->
 
-    <div id="results"></div>
+<input
+type="text"
+id="query"
+placeholder="Pesquisar na biblioteca técnica..."
+autocomplete="off"
+>
 
+
+<!-- botão -->
+
+<button id="btnBuscar">
+Pesquisar
+</button>
 
 </div>
+
+</div>
+
+
+
+<!-- ===== AUTOCOMPLETE ===== -->
+
+<div id="autocomplete"></div>
+
+
+
+<!-- ===== RESULTADOS ===== -->
+
+<div id="results"></div>
+
+
+
+<!-- ===== PAGINAÇÃO ===== -->
+
+<div id="pagination"></div>
+
+
+</main>
 
 
 
@@ -73,7 +100,7 @@
 
 <div class="footer">
 
-DocAI • Motor de busca de documentos técnicos  
+DocAI • Motor de busca de documentos técnicos
 <br>
 Biblioteca indexada localmente
 
@@ -88,9 +115,28 @@ Carregando estatísticas...
 </footer>
 
 
+
 <!-- ===== JAVASCRIPT ===== -->
 
 <script src="js/app.js"></script>
+
+<script>
+
+/* botão pesquisar */
+
+document.getElementById("btnBuscar").addEventListener("click", buscar);
+
+/* pesquisar ao pressionar enter */
+
+document.getElementById("query").addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+buscar();
+}
+
+});
+
+</script>
 
 </body>
 </html>
