@@ -1,60 +1,64 @@
 /*     # ##################################################################
        # Este codigo deve ser instalado no serv 10.0.0.37
        #   /var/www/html/docai/app.js
-       # Desenvolvido em 08-03-2026
+       # Desenvolvido em 09-03-2026
+       # DocAI - Interface de Busca
+       # CSS atualizado estilo Google
        # ################################################################## */
-
 
 /* ===== RESET ===== */
 
 body{
-
 font-family:Arial, Helvetica, sans-serif;
-background:#f1f3f4;
+background:#ffffff;
 margin:0;
 padding:0;
-
 }
 
 
 /* ===== CONTAINER ===== */
 
 .container{
-
 width:900px;
 margin:auto;
-margin-top:120px;
+margin-top:80px;
+text-align:center;
+}
 
+
+/* ===== LOGO ===== */
+
+.logo{
+margin-bottom:30px;
+}
+
+.logo img{
+width:220px;
 }
 
 
 /* ===== TÍTULO ===== */
 
 h1{
-
-text-align:center;
-font-size:48px;
+font-size:42px;
 color:#202124;
 margin-bottom:40px;
-
 }
 
 
 /* ===== BUSCA ===== */
 
 .search-box{
-
 display:flex;
 justify-content:center;
+align-items:center;
 gap:10px;
-
 }
 
 
 /* campo de busca */
 
 input{
-
 width:600px;
 padding:14px;
 font-size:18px;
@@ -65,17 +69,14 @@ border:1px solid #dfe1e5;
 outline:none;
 
 transition:all 0.2s;
-
 }
 
 
 /* efeito focus estilo Google */
 
 input:focus{
-
 box-shadow:0 1px 6px rgba(32,33,36,0.28);
 border-color:rgba(223,225,229,0);
-
 }
 
 
@@ -83,15 +84,15 @@ border-color:rgba(223,225,229,0);
 
 button{
 
-padding:14px 24px;
+padding:12px 20px;
 
 font-size:16px;
 
-border:none;
+border:1px solid #dadce0;
 border-radius:25px;
 
-background:#4285f4;
-color:white;
+background:#f8f9fa;
+color:#3c4043;
 
 cursor:pointer;
 
@@ -100,9 +101,8 @@ transition:all 0.2s;
 }
 
 button:hover{
-
-background:#3367d6;
-
+box-shadow:0 1px 3px rgba(0,0,0,0.2);
+background:#f1f3f4;
 }
 
 
@@ -118,6 +118,7 @@ margin-top:20px;
 border-radius:10px;
 
 box-shadow:0 1px 3px rgba(0,0,0,0.1);
+text-align:left;
 
 }
 
@@ -160,6 +161,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.1);
 border-left:5px solid #4285f4;
 
 line-height:1.6;
+text-align:left;
 
 }
 
@@ -167,36 +169,14 @@ line-height:1.6;
 /* ===== LINK PDF ===== */
 
 a{
-
 color:#1a73e8;
 text-decoration:none;
-
 }
 
 a:hover{
-
 text-decoration:underline;
-
 }
 
-
-/* ===== RESPONSIVO ===== */
-
-@media (max-width:900px){
-
-.container{
-
-width:95%;
-
-}
-
-input{
-
-width:100%;
-
-}
-
-}
 
 /* ===== AUTOCOMPLETE ===== */
 
@@ -204,11 +184,16 @@ width:100%;
 
 width:600px;
 margin:auto;
+
 background:white;
 border:1px solid #ddd;
+
 border-radius:8px;
 margin-top:5px;
+
 overflow:hidden;
+
+text-align:left;
 
 }
 
@@ -227,12 +212,13 @@ background:#f1f3f4;
 }
 
 
-/* ===== LOADING SPINNER ===== */
+/* ===== LOADING ===== */
 
 .loading{
 
 text-align:center;
 margin-top:40px;
+
 font-size:18px;
 color:#555;
 
@@ -259,5 +245,125 @@ animation:spin 1s linear infinite;
 
 0%{transform:rotate(0deg);}
 100%{transform:rotate(360deg);}
+
+}
+
+
+/* ===== RESPONSIVO ===== */
+
+@media (max-width:900px){
+
+.container{
+width:95%;
+}
+
+input{
+width:100%;
+}
+
+#autocomplete{
+width:100%;
+}
+
+.search-box{
+flex-direction:column;
+}
+
+}
+
+/* ===== FOOTER ===== */
+
+
+.footer{
+
+margin-top:60px;
+padding:20px;
+
+text-align:center;
+
+background:#ffffff;
+
+border-top:1px solid #ddd;
+
+font-size:14px;
+
+color:#5f6368;
+
+}
+
+/* ===== RESULTADO ESTILO GOOGLE ===== */
+
+.result-title{
+
+font-size:18px;
+margin-bottom:6px;
+
+}
+
+.doc-link{
+
+color:#1a0dab;
+text-decoration:none;
+
+}
+
+.doc-link:hover{
+
+text-decoration:underline;
+
+}
+
+.pdf-icon{
+
+margin-right:6px;
+
+}
+
+.page{
+
+color:#5f6368;
+font-size:14px;
+margin-left:6px;
+
+}
+
+/* título do resultado */
+
+.result-title{
+
+font-size:18px;
+margin-bottom:6px;
+
+}
+
+/* link do documento */
+
+.doc-link{
+
+color:#188038;
+text-decoration:none;
+
+}
+
+.doc-link:hover{
+
+text-decoration:underline;
+
+}
+
+/* ícone PDF */
+
+.pdf-icon{
+
+margin-right:6px;
+
+}
+
+/* página */
+
+.page{
+
+color:#5f6368;
+font-size:14px;
 
 }

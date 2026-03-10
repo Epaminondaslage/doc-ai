@@ -1,17 +1,20 @@
-<!-- # ##################################################################
-     # Este codigo deve ser instalado no serv 10.0.0.37
-     #   /var/www/html/docai/index.html
-     # Desenvolvido em 08-03-2026
-     # ################################################################## -->
+
+<!-- ##########################################################
+     DocAI - Interface Web de Busca
+     Servidor: 10.0.0.37
+     Local: /var/www/html/docai/index.html
+     ########################################################## -->
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
 
 <meta charset="UTF-8">
 
-<title>DocAI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DocAI - Biblioteca Técnica</title>
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -19,24 +22,73 @@
 
 <body>
 
+
+<!-- ===== CONTAINER PRINCIPAL ===== -->
+
 <div class="container">
 
-<h1>DocAI</h1>
 
-<div class="search-box">
+    <!-- ===== LOGO ===== -->
 
-<input id="query" placeholder="Pesquisar na biblioteca técnica">
+    <div class="logo">
+        <img src="img/logo.jpg" alt="DocAI">
+    </div>
 
-<button onclick="search()">Pesquisar</button>
+
+    <!-- ===== CAMPO DE BUSCA ===== -->
+
+    <div class="search-box">
+
+        <input 
+            id="query"
+            type="text"
+            placeholder="Pesquisar na biblioteca técnica..."
+            autocomplete="off"
+        >
+
+        <button onclick="search()">
+            Pesquisar
+        </button>
+
+    </div>
+
+
+    <!-- ===== AUTOCOMPLETE ===== -->
+
+    <div id="autocomplete"></div>
+
+
+    <!-- ===== RESULTADOS ===== -->
+
+    <div id="results"></div>
+
 
 </div>
 
-<!-- NOVO: autocomplete -->
-<div id="autocomplete"></div>
 
-<div id="results"></div>
+
+<!-- ===== RODAPÉ ===== -->
+
+<footer>
+
+<div class="footer">
+
+DocAI • Motor de busca de documentos técnicos  
+<br>
+Biblioteca indexada localmente
+
+<br><br>
+
+<div id="stats">
+Carregando estatísticas...
+</div>
 
 </div>
+
+</footer>
+
+
+<!-- ===== JAVASCRIPT ===== -->
 
 <script src="js/app.js"></script>
 
