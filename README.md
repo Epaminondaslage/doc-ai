@@ -571,35 +571,183 @@ htop
 
 ---
 
-# ⚠️ Limitações
+Perfeito. Vou montar o **índice com links clicáveis para o GitHub**, usando o caminho real do seu repositório:
 
-Alguns PDFs podem estar:
+```
+https://github.com/Epaminondaslage/doc-ai
+```
 
-* protegidos
-* criptografados
-* corrompidos
-
-Nestes casos o indexador ignora o documento.
+Assim você pode **copiar e colar direto no README.md**.
 
 ---
 
-# 🚀 Resultado Final
+# 📚 Documentação do Sistema DocAI
 
-O sistema transforma a biblioteca em um:
+A documentação detalhada do sistema está organizada no diretório **`doc/`** deste repositório.
 
-```
-Assistente técnico inteligente local
-```
-
-Capaz de responder perguntas sobre:
-
-* eletrônica
-* instalações elétricas
-* automação
-* programação
-* redes
-* normas técnicas
+Cada documento descreve um componente específico da arquitetura **DocAI + AI Gateway + RAG + Ollama**.
 
 ---
 
-Ela deixa seu projeto com **documentação nível GitHub profissional**.
+# 📑 Índice da Documentação
+
+## 🧠 Sistema de Indexação
+
+Documentação do processo de leitura dos PDFs, geração de embeddings e armazenamento no banco vetorial.
+
+📄 **Indexador de PDFs**
+
+Explica como funciona:
+
+* pipeline de extração
+* OCR automático
+* divisão em chunks
+* geração de embeddings
+* armazenamento vetorial
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-PDF-Indexer.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-PDF-Indexer.md)
+
+---
+
+# 🧠 Migração de Embeddings
+
+Documentação da migração do modelo de embeddings utilizado no sistema.
+
+📄 **Migração para Nomic Embed Text**
+
+Este documento explica:
+
+* mudança do modelo de embeddings
+* impacto na qualidade da busca
+* reindexação da biblioteca
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-migracao-nomic-embed-text.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-migracao-nomic-embed-text.md)
+
+---
+
+# 🌐 Interface Web do DocAI
+
+Documentação da interface web para consulta da biblioteca técnica.
+
+📄 **Interface Web do DocAI**
+
+Inclui:
+
+* interface de busca
+* visualização de resultados
+* navegação entre documentos
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI–InterfaceWeb.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI–InterfaceWeb.md)
+
+---
+
+# 🖥️ Frontend do Sistema
+
+Documentação da camada de frontend da aplicação.
+
+📄 **Frontend do DocAI**
+
+Explica:
+
+* estrutura HTML
+* integração com a API
+* funcionamento da interface
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-Ai-frontend.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-Ai-frontend.md)
+
+---
+
+# 🧠 AI Gateway
+
+Documentação do gateway que conecta o DocAI ao sistema Sentinela e aos modelos LLM.
+
+---
+
+📄 **Inicialização do AI Gateway**
+
+Versão atual do processo de inicialização.
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-Ai-iniciar-gateway.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-Ai-iniciar-gateway.md)
+
+---
+
+📄 **Inicialização do AI Gateway (versão v0.1)**
+
+Versão inicial utilizada durante os primeiros testes do sistema.
+
+🔗
+[doc/Doc-Ai-iniciar-gateway%20-v0.1.md](doc/Doc-Ai-iniciar-gateway%20-v0.1.md)
+
+---
+
+# ⚙️ API DocAI como Serviço
+
+Documentação da execução da API como serviço do sistema utilizando **systemd**.
+
+📄 **DocAI API Service**
+
+Explica:
+
+* criação do serviço
+* inicialização automática
+* monitoramento do processo
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/DocAI%20-API-systemd.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/DocAI%20-API-systemd.md)
+
+---
+
+# 📘 Documentação Histórica
+
+Versão inicial do README do projeto.
+
+📄 **README versão 0.1**
+
+🔗
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/README-V0.1.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/README-V0.1.md)
+
+---
+
+# 🧭 Estrutura da Documentação
+
+```
+doc/
+
+Doc-AI-PDF-Indexer.md
+Doc-AI-migracao-nomic-embed-text.md
+Doc-AI–InterfaceWeb.md
+Doc-Ai-frontend.md
+Doc-Ai-iniciar-gateway.md
+Doc-Ai-iniciar-gateway -v0.1.md
+DocAI -API-systemd.md
+README-V0.1.md
+```
+
+---
+
+# 🔎 Ordem recomendada de leitura
+
+Para entender completamente o sistema:
+
+1️⃣ Indexação da biblioteca
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-PDF-Indexer.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-PDF-Indexer.md)
+
+2️⃣ Migração de embeddings
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-migracao-nomic-embed-text.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI-migracao-nomic-embed-text.md)
+
+3️⃣ API DocAI como serviço
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/DocAI%20-API-systemd.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/DocAI%20-API-systemd.md)
+
+4️⃣ Inicialização do Gateway
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-Ai-iniciar-gateway.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-Ai-iniciar-gateway.md)
+
+5️⃣ Interface Web
+[https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI–InterfaceWeb.md](https://github.com/Epaminondaslage/doc-ai/blob/main/doc/Doc-AI–InterfaceWeb.md)
+
+---
+
