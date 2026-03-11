@@ -418,6 +418,127 @@ Capaz de consultar conhecimento sobre
 * normas técnicas
 * redes de computadores
 
+## Executar o indexador com tmux
+
+```
+epaminondas@Ubuntu-desktop:~$ pwd
+/home/epaminondas
+epaminondas@Ubuntu-desktop:~$ ls tmux-docai.sh 
+tmux-docai.sh```
+```
+
+## ver o que voi feito enter comandos  de status.sh
+
+```
+epaminondas@Ubuntu-desktop:/opt/doc-ai$ ls
+api  index_checkpoint.txt  index_status.log  logs  pdfs  scripts  status.sh  vector_db  venv
+epaminondas@Ubuntu-desktop:/opt/doc-ai$ pwd
+/opt/doc-ai
+epaminondas@Ubuntu-desktop:/opt/doc-ai$ ls
+api  index_checkpoint.txt  index_status.log  logs  pdfs  scripts  status.sh  vector_db  venv
+epaminondas@Ubuntu-desktop:/opt/doc-ai$ ./status.sh 
+
+========================================
+        Status da Indexação DocAI
+========================================
+
+Data atual        : 2026-03-11 06:21:02
+PDFs biblioteca   : 1063
+PDFs indexados    : 281
+PDFs restantes    : 782
+Progresso         : 26 %
+
+Novos PDFs        : 0
+Tempo decorrido   : 10 min
+Velocidade        : 0 PDFs/hora
+
+Histórico salvo em:
+/opt/doc-ai/index_status.log
+
+```
+## Ajuda tmux
+
+```
+epaminondas@Ubuntu-desktop:/opt/doc-ai$ cd /home/epaminondas/
+epaminondas@Ubuntu-desktop:~$ cat help-tmux.txt 
+
+##############################################################
+TMUX - GUIA RÁPIDO
+Multiplexador de terminal para Linux
+###############################################################
+O tmux permite criar múltiplos terminais dentro de um único
+terminal e manter processos rodando mesmo após fechar o SSH.
+
+É muito útil para:
+
+- indexação de documentos, execução de scripts longos, monitoramento
+ de logs, administração remota de servidores.
+===============================================================
+1 - INSTALAÇÃO
+===============================================================
+Instalar tmux:
+
+sudo apt install tmux
+===============================================================
+2 - CRIAR UMA SESSÃO
+===============================================================
+Criar uma nova sessão chamada "docai":
+
+tmux new -s docai
+
+Agora você está dentro da sessão tmux.
+===============================================================
+3 - SAIR DA SESSÃO SEM PARAR OS PROCESSOS
+===============================================================
+Pressione:
+
+CTRL + B
+D
+
+Isso faz o "detach".  A sessão continua rodando em segundo plano.
+===============================================================
+4 - LISTAR SESSÕES ATIVAS
+===============================================================
+tmux ls
+Exemplo de saída:
+
+0: docai (Detached)
+===============================================================
+5 - VOLTAR PARA UMA SESSÃO
+===============================================================
+tmux attach -t docai
+===============================================================
+6 - FECHAR UMA SESSÃO
+===============================================================
+Dentro do tmux:
+exit
+ou
+CTRL + D
+===============================================================
+7 - DIVIDIR A TELA
+===============================================================
+Dividir horizontal:
+CTRL + B
+"
+
+Dividir vertical:
+CTRL + B
+%
+===============================================================
+8 - MUDAR ENTRE PAINÉIS
+===============================================================
+CTRL + B
+seta para cima / baixo / esquerda / direita
+===============================================================
+9 - ANEXAR SESSÃO
+===============================================================
+tmux attach -t nome
+===============================================================
+10 - MATAR UMA SESSÃO
+===============================================================
+tmux kill-session -t nome
+===============================================================
+
+```
 
 ---
-
