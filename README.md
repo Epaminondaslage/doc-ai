@@ -1,11 +1,10 @@
 
+
 # DocAI — Sistema de Consulta Inteligente de Biblioteca Técnica
 
-## Ver os arquivos "md" no diretório "doc" tem informacoes do indexador, tmux, etc
+Sistema de **indexação e consulta semântica de documentos técnicos** utilizando **RAG (Retrieval Augmented Generation)** rodando **100% local**.
 
-Sistema de **indexação e consulta semântica de documentos técnicos utilizando RAG (Retrieval Augmented Generation)** rodando **100% local**.
-
-O sistema permite transformar uma coleção de documentos em um **assistente técnico pesquisável**, capaz de responder perguntas técnicas utilizando documentos da própria biblioteca.
+O sistema transforma uma coleção de documentos técnicos em um **assistente técnico pesquisável**, capaz de responder perguntas utilizando conhecimento presente nos próprios documentos.
 
 ---
 
@@ -16,14 +15,35 @@ Permitir:
 * indexar bibliotecas grandes de documentos
 * criar embeddings semânticos
 * buscar conhecimento técnico
-* integrar com modelos locais (LLM)
-* operar completamente **offline**
+* integrar com modelos LLM locais
+* operar completamente offline
+* integrar com sistemas externos via API
 
 ---
 
 # 🖥️ Infraestrutura
 
-Servidor principal:
+Arquitetura atual do sistema:
+
+```
+Usuário
+ ↓
+OpenWebUI
+ ↓
+Sentinela AI Gateway (10.0.0.139)
+ ↓
+DocAI API (10.0.0.37)
+ ↓
+Banco Vetorial (ChromaDB)
+ ↓
+Ollama LLM (10.0.0.37)
+```
+
+---
+
+# 🖥️ Servidores
+
+## Servidor DocAI
 
 ```
 10.0.0.37
@@ -41,7 +61,26 @@ Hardware:
 CPU only
 ```
 
-Biblioteca técnica:
+---
+
+## Servidor AI Gateway
+
+```
+10.0.0.139
+```
+
+Responsável por:
+
+* orquestrar consultas
+* integrar DocAI
+* integrar MySQL
+* enviar prompts para Ollama
+
+---
+
+# 📚 Biblioteca Técnica
+
+Quantidade de documentos:
 
 ```
 1063 PDFs
@@ -54,7 +93,7 @@ Origem da biblioteca:
 10.0.0.5:/var/www/html/Biblioteca
 ```
 
-Destino:
+Destino no servidor DocAI:
 
 ```
 /opt/doc-ai/pdfs
@@ -75,6 +114,9 @@ Destino:
 │
 ├── vector_db
 │   └── Banco vetorial ChromaDB
+│
+├── api
+│   └── docai_api.py
 │
 ├── venv
 │   └── ambiente Python isolado
@@ -114,13 +156,11 @@ resposta
              |  1063 arquivos   |
              +---------+--------+
                        |
-                       |
                        v
                +----------------+
                | Indexador PDF  |
                | Python Script  |
                +-------+--------+
-                       |
                        |
                        v
                +----------------+
@@ -128,17 +168,17 @@ resposta
                | Banco Vetorial |
                +-------+--------+
                        |
-                       |
                        v
                +----------------+
-               |  Sistema RAG   |
+               |  API DocAI     |
+               | FastAPI        |
                +-------+--------+
                        |
          +-------------+-------------+
          |                           |
          v                           v
    +------------+              +-------------+
-   | Ollama CLI |              | OpenWebUI   |
+   | Ollama LLM |              | AI Gateway  |
    +------------+              +-------------+
 ```
 
@@ -162,13 +202,13 @@ armazenamento no ChromaDB
 
 ---
 
-# 🔎 Pipeline de Indexação Atualizado (com OCR)
+# 🔎 Pipeline de Indexação com OCR
 
-Alguns documentos da biblioteca são **PDFs escaneados** (imagem).
+Alguns documentos da biblioteca são **PDFs escaneados (imagem)**.
 
 Nestes casos o sistema executa **OCR automático**.
 
-Pipeline atualizado:
+Pipeline:
 
 ```
 PDF
@@ -218,7 +258,7 @@ geração da resposta
 
 Criar diretório do projeto:
 
-```
+```bash
 mkdir -p /opt/doc-ai
 cd /opt/doc-ai
 ```
@@ -227,13 +267,13 @@ cd /opt/doc-ai
 
 # 🐍 Criar ambiente virtual Python
 
-```
+```bash
 python3 -m venv venv
 ```
 
 Ativar:
 
-```
+```bash
 source venv/bin/activate
 ```
 
@@ -241,23 +281,25 @@ source venv/bin/activate
 
 # 📦 Instalar dependências
 
-```
+```bash
 pip install langchain
 pip install chromadb
 pip install pypdf
 pip install sentence-transformers
 pip install langchain-text-splitters
+pip install fastapi
+pip install uvicorn
 ```
 
 ---
 
 # 📦 Dependências adicionais (OCR e criptografia)
 
-Alguns PDFs utilizam **criptografia AES** e outros exigem **OCR**.
+Alguns PDFs utilizam criptografia AES e outros exigem OCR.
 
-Dependências extras:
+Dependências Python:
 
-```
+```bash
 pip install cryptography
 pip install pytesseract
 pip install pdf2image
@@ -266,7 +308,7 @@ pip install pillow
 
 Dependências do sistema:
 
-```
+```bash
 sudo apt install tesseract-ocr
 sudo apt install tesseract-ocr-por
 sudo apt install poppler-utils
@@ -278,17 +320,17 @@ sudo apt install poppler-utils
 
 Transferência realizada com:
 
-```
+```bash
 rsync -avh --progress epaminondas@10.0.0.5:/var/www/html/Biblioteca/ /opt/doc-ai/pdfs/
 ```
 
 Verificação:
 
-```
+```bash
 find /opt/doc-ai/pdfs -type f -iname "*.pdf" | wc -l
 ```
 
-Resultado:
+Resultado esperado:
 
 ```
 1063
@@ -317,7 +359,7 @@ Motivo da escolha:
 
 * melhor desempenho em CPU
 * rápido para bibliotecas grandes
-* boa qualidade sem necessidade de GPU
+* boa qualidade sem GPU
 
 ---
 
@@ -334,7 +376,7 @@ Responsabilidades:
 * percorrer biblioteca
 * extrair texto
 * aplicar OCR quando necessário
-* dividir conteúdo
+* dividir conteúdo em chunks
 * gerar embeddings
 * armazenar metadados
 * tratar PDFs criptografados
@@ -343,9 +385,7 @@ Responsabilidades:
 
 # 🧾 Metadados Indexados
 
-O sistema indexa metadados para cada trecho.
-
-Estrutura:
+Cada trecho armazena:
 
 ```
 {
@@ -363,7 +403,7 @@ Campos armazenados:
 | pagina  | página do documento  |
 | caminho | localização completa |
 
-Esses dados permitem gerar respostas com **fonte e referência precisa**.
+Isso permite **respostas com referência precisa da fonte**.
 
 ---
 
@@ -371,13 +411,13 @@ Esses dados permitem gerar respostas com **fonte e referência precisa**.
 
 Ativar ambiente:
 
-```
+```bash
 source /opt/doc-ai/venv/bin/activate
 ```
 
 Executar:
 
-```
+```bash
 python /opt/doc-ai/scripts/index_pdfs.py
 ```
 
@@ -419,27 +459,50 @@ Contém:
 
 ---
 
-# 🔍 Consulta Semântica
+# 🔍 API DocAI
 
-Exemplos de perguntas possíveis:
+A API fornece busca semântica.
 
-```
-o que diz a NBR5410 sobre aterramento
-```
+Servidor:
 
 ```
-explique funcionamento de inversor de frequência
+http://10.0.0.37:5005
 ```
 
+Documentação:
+
 ```
-quais documentos falam sobre redes de computadores
+http://10.0.0.37:5005/docs
+```
+
+Endpoint principal:
+
+```
+/search?q=pergunta
+```
+
+Exemplo:
+
+```bash
+curl "http://10.0.0.37:5005/search?q=MQTT"
+```
+
+Resposta:
+
+```
+trechos relevantes do PDF
 ```
 
 ---
 
 # 🤖 Modelos LLM
 
-Servidor Ollama.
+Servidor Ollama:
+
+```
+10.0.0.37
+porta 11434
+```
 
 Modelos instalados:
 
@@ -447,26 +510,42 @@ Modelos instalados:
 tinyllama
 tinyllama-fast
 qwen2.5:0.5b
+qwen2.5:1.5b
 ```
 
-Recomendado:
+Modelo recomendado:
 
 ```
-qwen2.5
+qwen2.5:1.5b
 ```
 
-Melhor qualidade para respostas técnicas.
+Melhor qualidade para respostas técnicas em CPU.
 
 ---
 
-# 💬 Integração com OpenWebUI
+# 💬 Integração com AI Gateway
 
-OpenWebUI pode utilizar o banco vetorial para:
+O gateway roda no servidor:
 
-* chat com documentos
-* busca técnica
-* consulta semântica
-* respostas com referência de fonte
+```
+10.0.0.139
+```
+
+Fluxo:
+
+```
+pergunta
+ ↓
+AI Gateway
+ ↓
+DocAI search
+ ↓
+contexto técnico
+ ↓
+Ollama
+ ↓
+resposta final
+```
 
 ---
 
@@ -474,19 +553,19 @@ OpenWebUI pode utilizar o banco vetorial para:
 
 Ver crescimento do banco vetorial:
 
-```
+```bash
 watch -n 10 du -sh /opt/doc-ai/vector_db
 ```
 
 Ver uso de CPU:
 
-```
+```bash
 top
 ```
 
 ou
 
-```
+```bash
 htop
 ```
 
@@ -508,14 +587,19 @@ Nestes casos o indexador ignora o documento.
 
 O sistema transforma a biblioteca em um:
 
-**Assistente técnico inteligente local**
+```
+Assistente técnico inteligente local
+```
 
-Capaz de consultar conhecimento sobre:
+Capaz de responder perguntas sobre:
 
 * eletrônica
 * instalações elétricas
 * automação
 * programação
+* redes
 * normas técnicas
 
 ---
+
+Ela deixa seu projeto com **documentação nível GitHub profissional**.
