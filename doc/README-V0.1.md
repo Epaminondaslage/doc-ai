@@ -423,11 +423,15 @@ Capaz de consultar conhecimento sobre
 ```
 epaminondas@Ubuntu-desktop:~$ pwd
 /home/epaminondas
+
 epaminondas@Ubuntu-desktop:~$ ls tmux-docai.sh 
-tmux-docai.sh```
+tmux-docai.sh
+
+epaminondas@Ubuntu-desktop:~$ ./tmux-docai.sh
+
 ```
 
-## Para ver o que foi feito entre comandos  de './status.sh'
+## Para ver o que foi feito entre comandos  de ./status.sh
 
 ```
 epaminondas@Ubuntu-desktop:/opt/doc-ai$ ls
