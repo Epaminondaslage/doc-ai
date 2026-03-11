@@ -427,7 +427,7 @@ epaminondas@Ubuntu-desktop:~$ ls tmux-docai.sh
 tmux-docai.sh```
 ```
 
-## ver o que voi feito enter comandos  de status.sh
+## Para ver o que foi feito entre comandos  de './status.sh'
 
 ```
 epaminondas@Ubuntu-desktop:/opt/doc-ai$ ls
