@@ -1,7 +1,7 @@
 
 # DocAI — Sistema de Consulta Inteligente de Biblioteca Técnica
 
-## Ver os md no doc tem informacoes do indexador, tmux, etc
+## Ver os arquivos "md" no diretório "doc" tem informacoes do indexador, tmux, etc
 
 Sistema de **indexação e consulta semântica de documentos técnicos utilizando RAG (Retrieval Augmented Generation)** rodando **100% local**.
 
