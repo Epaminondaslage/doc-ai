@@ -594,41 +594,118 @@ htop
 
 # 📚 Documentação do Sistema DocAI
 
-A documentação detalhada está no diretório **doc/**.
+A documentação detalhada do sistema está organizada no diretório **doc/** deste repositório.
 
-### Sistema de Indexação
-
-🔗 doc/Doc-AI-PDF-Indexer.md
-
-### Migração de Embeddings
-
-🔗 doc/Doc-AI-migracao-nomic-embed-text.md
-
-### Interface Web
-
-🔗 doc/Doc-AI–InterfaceWeb.md
-
-### Frontend
-
-🔗 doc/Doc-Ai-frontend.md
-
-### AI Gateway
-
-🔗 doc/Doc-Ai-iniciar-gateway.md
-🔗 doc/Doc-Ai-iniciar-gateway%20-v0.1.md
-
-### API DocAI como Serviço
-
-🔗 doc/DocAI%20-API-systemd.md
-
-### Documentação Histórica
-
-🔗 doc/README-V0.1.md
+Cada documento descreve um componente específico da arquitetura **DocAI + AI Gateway + RAG + Ollama**.
 
 ---
 
-Se quiser, no próximo passo posso também te gerar **3 melhorias muito úteis para esse repositório**:
+## 🧠 Sistema de Indexação
 
-1️⃣ **Diagrama visual da arquitetura (SVG para GitHub)**
-2️⃣ **Badges profissionais no topo do README**
-3️⃣ **Seção "Quick Start (5 minutos)"** para quem clonar o projeto.
+Documentação do processo de leitura dos PDFs, geração de embeddings e armazenamento no banco vetorial.
+
+📄 **Indexador de PDFs**
+
+Explica como funciona:
+
+- pipeline de extração
+- OCR automático
+- divisão em chunks
+- geração de embeddings
+- armazenamento vetorial
+
+🔗 [doc/Doc-AI-PDF-Indexer.md](doc/Doc-AI-PDF-Indexer.md)
+
+---
+
+## 🧠 Migração de Embeddings
+
+Documentação da migração do modelo de embeddings utilizado no sistema.
+
+📄 **Migração para Nomic Embed Text**
+
+Este documento explica:
+
+- mudança do modelo de embeddings
+- impacto na qualidade da busca
+- reindexação da biblioteca
+
+🔗 [doc/Doc-AI-migracao-nomic-embed-text.md](doc/Doc-AI-migracao-nomic-embed-text.md)
+
+---
+
+## 🌐 Interface Web do DocAI
+
+Documentação da interface web para consulta da biblioteca técnica.
+
+📄 **Interface Web do DocAI**
+
+Inclui:
+
+- interface de busca
+- visualização de resultados
+- navegação entre documentos
+
+🔗 [doc/Doc-AI–InterfaceWeb.md](doc/Doc-AI–InterfaceWeb.md)
+
+---
+
+## 🖥️ Frontend do Sistema
+
+Documentação da camada de frontend da aplicação.
+
+📄 **Frontend do DocAI**
+
+Explica:
+
+- estrutura HTML
+- integração com a API
+- funcionamento da interface
+
+🔗 [doc/Doc-Ai-frontend.md](doc/Doc-Ai-frontend.md)
+
+---
+
+## 🧠 AI Gateway
+
+Documentação do gateway que conecta o DocAI ao sistema Sentinela e aos modelos LLM.
+
+📄 **Inicialização do AI Gateway**
+
+Versão atual do processo de inicialização.
+
+🔗 [doc/Doc-Ai-iniciar-gateway.md](doc/Doc-Ai-iniciar-gateway.md)
+
+📄 **Inicialização do AI Gateway (versão v0.1)**
+
+Versão inicial utilizada durante os primeiros testes do sistema.
+
+🔗 [doc/Doc-Ai-iniciar-gateway -v0.1.md](doc/Doc-Ai-iniciar-gateway%20-v0.1.md)
+
+---
+
+## ⚙️ API DocAI como Serviço
+
+Documentação da execução da API como serviço do sistema utilizando **systemd**.
+
+📄 **DocAI API Service**
+
+Explica:
+
+- criação do serviço
+- inicialização automática
+- monitoramento do processo
+
+🔗 [doc/DocAI -API-systemd.md](doc/DocAI%20-API-systemd.md)
+
+---
+
+## 📘 Documentação Histórica
+
+Versão inicial do README do projeto.
+
+📄 **README versão 0.1**
+
+🔗 [doc/README-V0.1.md](doc/README-V0.1.md)
+
+
