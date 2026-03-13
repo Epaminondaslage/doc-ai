@@ -368,8 +368,9 @@ Motivo da escolha:
 Localização:
 
 ```
-/opt/doc-ai/scripts/index_pdfs.py
+/opt/doc-ai/scripts/index_pdfs_v6.py
 ```
+Verificar nos diretorio qual a ultima versão em uso 
 
 Responsabilidades:
 
